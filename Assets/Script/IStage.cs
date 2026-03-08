@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 namespace Script
 {
@@ -12,11 +13,15 @@ namespace Script
     {
         public bool Check()
         {
-            if (Input.anyKeyDown)
-            {
-                return true;
-            }
-            return false;
+            return Keyboard.current.anyKey.wasPressedThisFrame;
+        }
+    }
+
+    public class Stage2 : IStage
+    {
+        public bool Check()
+        {
+            return Pointer.current != null && Pointer.current.press.wasPressedThisFrame;
         }
     }
 }

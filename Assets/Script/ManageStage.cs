@@ -17,7 +17,8 @@ namespace Script
 
         private readonly Dictionary<string, Type> _missionTypes = new Dictionary<string, Type>()
         {
-            { "Stage1", typeof(Stage1) }
+            { "Stage1", typeof(Stage1) },
+            { "Stage2", typeof(Stage2) },
         };
 
         public StageInfo[] allStageInfos;
@@ -26,6 +27,9 @@ namespace Script
         private TextMeshProUGUI _stageTitleText;
         private int _currentStage;
         private GameObject _spawnedObject;
+        private IStage _currentStageInstance;
+
+        public AudioSource stageClearAudio;
 
         private void Awake()
         {
@@ -71,10 +75,18 @@ namespace Script
                 }
                 
                 var minutes = Mathf.FloorToInt(_secondClockNumber / 60);
-                float seconds = Mathf.FloorToInt(_secondClockNumber % 60);
+                float seconds = _secondClockNumber % 60;
                 _secondClockText.text = $"{minutes:00}:{seconds:00.00}";
 
                 _secondClockNumber += Time.deltaTime;
+                
+                if (_currentStageInstance != null && _currentStageInstance.Check())
+                {
+                    _currentStageInstance = null;
+                    _currentStage++;
+                    stageClearAudio.PlayOneShot(stageClearAudio.clip, 2f);
+                    NextStage();
+                }
             }
             else if (ManageGame.Instance.isGameStart && ManageGame.Instance.isGameFinish && !ManageGame.Instance.isGameClear)
             {
@@ -90,30 +102,19 @@ namespace Script
         {
             if (_currentStage < allStageInfos.Length)
             {
-                if (_spawnedObject == null) Destroy(_spawnedObject);
+                if (_spawnedObject != null) Destroy(_spawnedObject);
 
                 StageInfo current = allStageInfos[_currentStage];
                 _stageTitleText.text = current.stageText;
 
                 if (current.stagePrefab != null)
-                {
                     _spawnedObject = Instantiate(current.stagePrefab);
-                    string stageKey = "Stage" + _currentStage;
-                    bool isStageClear = false;
                     
-                    if (!_missionTypes.ContainsKey(stageKey)) return;
-                    Type t = _missionTypes[stageKey];
-                    
-                    IStage stage = (IStage) Activator.CreateInstance(t);
+                string stageKey = "Stage" + (_currentStage + 1);
+                if (!_missionTypes.ContainsKey(stageKey)) return;
 
-                    while (!isStageClear)
-                    {
-                        isStageClear = stage.Check();
-                    }
-                    
-                    _currentStage++;
-                    NextStage();
-                }
+                Type t = _missionTypes[stageKey];
+                _currentStageInstance = (IStage)Activator.CreateInstance(t);
             }
             else
             {
