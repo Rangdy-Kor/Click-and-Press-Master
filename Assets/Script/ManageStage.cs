@@ -19,6 +19,7 @@ namespace Script
         {
             { "Stage1", typeof(Stage1) },
             { "Stage2", typeof(Stage2) },
+            { "Stage3", typeof(Stage3) },
         };
 
         public StageInfo[] allStageInfos;
@@ -111,9 +112,8 @@ namespace Script
                     _spawnedObject = Instantiate(current.stagePrefab);
                     
                 string stageKey = "Stage" + (_currentStage + 1);
-                if (!_missionTypes.ContainsKey(stageKey)) return;
+                if (!_missionTypes.TryGetValue(stageKey, out var t)) return;
 
-                Type t = _missionTypes[stageKey];
                 _currentStageInstance = (IStage)Activator.CreateInstance(t);
             }
             else

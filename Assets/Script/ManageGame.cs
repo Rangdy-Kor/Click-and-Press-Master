@@ -1,9 +1,7 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngine.Serialization;
 
 namespace Script
 {
@@ -15,9 +13,9 @@ namespace Script
         public GameObject countDownObject;
         private TextMeshProUGUI _countDownText;
 
-        public bool isGameClear = false;
-        public bool isGameFinish = false;
-        public bool isGameStart = false;
+        public bool isGameClear;
+        public bool isGameFinish;
+        public bool isGameStart;
         private int _countDownNumber;
         public int countDownTime = 3;
 
