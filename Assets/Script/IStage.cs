@@ -1,13 +1,17 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Script
 {
     public interface IStage {
+        void Init(GameObject spawnedObject);
         bool Check(); 
     }
 
     public class Stage1 : IStage
     {
+        public void Init(GameObject spawnedObject) { }
+        
         public bool Check()
         {
             return Keyboard.current.anyKey.wasPressedThisFrame;
@@ -16,6 +20,8 @@ namespace Script
 
     public class Stage2 : IStage
     {
+        public void Init(GameObject spawnedObject) { }
+
         public bool Check()
         {
             return Pointer.current != null && Pointer.current.press.wasPressedThisFrame;
@@ -24,58 +30,65 @@ namespace Script
 
     public class Stage3 : IStage
     {
+        public void Init(GameObject spawnedObject) { }
+
+        private static readonly Key[] DigitOrder = {
+            Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5,
+            Key.Digit6, Key.Digit7, Key.Digit8, Key.Digit9, Key.Digit0
+        };
+        private static readonly Key[] NumpadOrder = {
+            Key.Numpad1, Key.Numpad2, Key.Numpad3, Key.Numpad4, Key.Numpad5,
+            Key.Numpad6, Key.Numpad7, Key.Numpad8, Key.Numpad9, Key.Numpad0
+        };
         private int _numberIndex;
+
         public bool Check()
         {
-            if (Keyboard.current.digit1Key.wasPressedThisFrame && _numberIndex == 0)
+            if (Keyboard.current[DigitOrder[_numberIndex]].wasPressedThisFrame || Keyboard.current[NumpadOrder[_numberIndex]].wasPressedThisFrame)
             {
                 _numberIndex++;
-                return false;
+                return _numberIndex >= DigitOrder.Length;
             }
-            if (Keyboard.current.digit2Key.wasPressedThisFrame && _numberIndex == 1)
+            return false;
+        }
+    }
+
+    public class Stage4 : IStage
+    {
+        private float _lastClickTime;
+        private const float DoubleClickThreshold = 0.3f;
+
+        public void Init(GameObject spawnedObject) { }
+        public bool Check()
+        {
+            if (Keyboard.current.shiftKey.isPressed &&
+                Pointer.current != null &&
+                Pointer.current.press.wasPressedThisFrame)
             {
-                _numberIndex++;
-                return false;
+                if (Time.time - _lastClickTime < DoubleClickThreshold)
+                {
+                    return true;
+                }
+                _lastClickTime = Time.time;
             }
-            if (Keyboard.current.digit3Key.wasPressedThisFrame && _numberIndex == 2)
+            return false;
+        }
+    }
+    
+    public class Stage5 : IStage
+    {
+        private static readonly Key[] Order = {
+            Key.A, Key.B, Key.C, Key.D, Key.E, Key.F, Key.G
+        };
+        private int _index;
+
+        public void Init(GameObject spawnedObject) { }
+        public bool Check()
+        {
+            if (Keyboard.current[Order[_index]].wasPressedThisFrame)
             {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit4Key.wasPressedThisFrame && _numberIndex == 3)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit5Key.wasPressedThisFrame && _numberIndex == 4)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit6Key.wasPressedThisFrame && _numberIndex == 5)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit7Key.wasPressedThisFrame && _numberIndex == 6)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit8Key.wasPressedThisFrame && _numberIndex == 7)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit9Key.wasPressedThisFrame && _numberIndex == 8)
-            {
-                _numberIndex++;
-                return false;
-            }
-            if (Keyboard.current.digit0Key.wasPressedThisFrame && _numberIndex == 9)
-            {
-                _numberIndex++;
-                return true;
+                _index++;
+                return _index >= Order.Length;
             }
             return false;
         }

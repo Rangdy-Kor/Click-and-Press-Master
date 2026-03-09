@@ -531,6 +531,8 @@ MonoBehaviour:
   - {fileID: 8989421071292924322, guid: 7f596db7f4306084e8c5dd8a23a23de4, type: 3}
   - {fileID: 8989421071292924322, guid: 852e0b0102a374c46aa661aa7083ab7c, type: 3}
   - {fileID: 8989421071292924322, guid: 68694cfed38c63846849528b9aa75e29, type: 3}
+  - {fileID: 8989421071292924322, guid: ddb0ddf2beb00c74c8e867980cc96489, type: 3}
+  - {fileID: 8989421071292924322, guid: 271d0c1484051dc4c8842055124801b6, type: 3}
   stageTitleObject: {fileID: 0}
   stageClearAudio: {fileID: 1616108079}
 --- !u!82 &1616108079

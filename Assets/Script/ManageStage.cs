@@ -20,6 +20,8 @@ namespace Script
             { "Stage1", typeof(Stage1) },
             { "Stage2", typeof(Stage2) },
             { "Stage3", typeof(Stage3) },
+            { "Stage4", typeof(Stage4) },
+            { "Stage5", typeof(Stage5) },
         };
 
         public StageInfo[] allStageInfos;
@@ -85,7 +87,7 @@ namespace Script
                 {
                     _currentStageInstance = null;
                     _currentStage++;
-                    stageClearAudio.PlayOneShot(stageClearAudio.clip, 2f);
+                    stageClearAudio.PlayOneShot(stageClearAudio.clip);
                     NextStage();
                 }
             }
@@ -113,8 +115,9 @@ namespace Script
                     
                 string stageKey = "Stage" + (_currentStage + 1);
                 if (!_missionTypes.TryGetValue(stageKey, out var t)) return;
-
+                
                 _currentStageInstance = (IStage)Activator.CreateInstance(t);
+                _currentStageInstance.Init(_spawnedObject);
             }
             else
             {
