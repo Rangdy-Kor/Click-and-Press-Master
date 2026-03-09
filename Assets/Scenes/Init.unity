@@ -445,6 +445,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 791270072037249386, guid: c09fd4ccba610734cba6fca372b6bf6b, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410290060641360125, guid: c09fd4ccba610734cba6fca372b6bf6b, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3305835379670304033, guid: c09fd4ccba610734cba6fca372b6bf6b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -792,8 +800,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9f6dbc912af511047819891732fe3f49, type: 2}
-  m_sharedMaterial: {fileID: -3427125372855154735, guid: 9f6dbc912af511047819891732fe3f49, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2042f8b56c0e5d43ac8cc219bbdeff7, type: 2}
+  m_sharedMaterial: {fileID: 8044384125218110239, guid: c2042f8b56c0e5d43ac8cc219bbdeff7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
