@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1410290060641360125}
   - component: {fileID: 6763749626751927907}
   - component: {fileID: 2796695648704577757}
+  - component: {fileID: 4158192637678281594}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -49,6 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManageGame
   countDownObject: {fileID: 0}
+  isGameClear: 0
+  isGameFinish: 0
   isGameStart: 0
   countDownTime: 3
   backgroundAudio: {fileID: 791270072037249386}
@@ -357,3 +360,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3364434fc725f8647a4e7b47a4c0b0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManageScene
+--- !u!114 &4158192637678281594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305835379670304033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c18facdab48954a838601f0e221288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Script.MainMenuBackground

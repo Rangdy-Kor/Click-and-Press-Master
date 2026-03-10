@@ -7,7 +7,7 @@ namespace Script
 {
     public class ManageGame : MonoBehaviour
     {
-        public static ManageGame Instance;
+        public static ManageGame GameInstance;
         
         private readonly string _coundDownObjectName = "CountDown";
         public GameObject countDownObject;
@@ -27,7 +27,7 @@ namespace Script
         
         void Awake()
         {
-            Instance = this;
+            GameInstance = this;
             
             var objs = FindObjectsByType<ManageGame>(FindObjectsSortMode.None);
             if (objs.Length > 1)
@@ -51,7 +51,7 @@ namespace Script
         {
             if (scene.name == "Init")
             {
-                Instance.GetComponent<ManageScene>().MainMenu();
+                GameInstance.GetComponent<ManageScene>().MainMenu();
             }
             
             if (scene.name == "InGame")

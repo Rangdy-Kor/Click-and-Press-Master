@@ -70,11 +70,11 @@ namespace Script
 
         void Update()
         {
-            if (ManageGame.Instance.isGameStart && !ManageGame.Instance.isGameFinish && !ManageGame.Instance.isGameClear)
+            if (ManageGame.GameInstance.isGameStart && !ManageGame.GameInstance.isGameFinish && !ManageGame.GameInstance.isGameClear)
             {
                 if (_secondClockNumber > secondClockLimit)
                 {
-                    ManageGame.Instance.isGameFinish = true;
+                    ManageGame.GameInstance.isGameFinish = true;
                 }
                 
                 var minutes = Mathf.FloorToInt(_secondClockNumber / 60);
@@ -91,11 +91,11 @@ namespace Script
                     NextStage();
                 }
             }
-            else if (ManageGame.Instance.isGameStart && ManageGame.Instance.isGameFinish && !ManageGame.Instance.isGameClear)
+            else if (ManageGame.GameInstance.isGameStart && ManageGame.GameInstance.isGameFinish && !ManageGame.GameInstance.isGameClear)
             {
                 _secondClockText.text = "Game Over";
             }
-            else if (ManageGame.Instance.isGameStart && ManageGame.Instance.isGameFinish && ManageGame.Instance.isGameClear)
+            else if (ManageGame.GameInstance.isGameStart && ManageGame.GameInstance.isGameFinish && ManageGame.GameInstance.isGameClear)
             {
                 _secondClockText.text = "Game Clear";
             }
@@ -121,7 +121,7 @@ namespace Script
             }
             else
             {
-                ManageGame.Instance.isGameClear = true;
+                ManageGame.GameInstance.isGameClear = true;
             }
         }
     }
