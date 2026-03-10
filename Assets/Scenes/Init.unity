@@ -652,9 +652,6 @@ MonoBehaviour:
   redCube: {fileID: 8343616407273020483, guid: 91581f4ea91f0da40b0b2b8eb7a68a21, type: 3}
   greenCube: {fileID: 8343616407273020483, guid: 31ebbcda4fab3b64182326236be738a8, type: 3}
   blueCube: {fileID: 8343616407273020483, guid: b522944a19ff58d4699660e8beb6c2dd, type: 3}
-  cubePos1: {fileID: 0}
-  cubePos2: {fileID: 0}
-  cubePos3: {fileID: 0}
 --- !u!1 &1783986054
 GameObject:
   m_ObjectHideFlags: 0
