@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace Script
@@ -16,12 +17,32 @@ namespace Script
         public GameObject redCube;
         public GameObject greenCube;
         public GameObject blueCube;
+        public Transform cubePos;
         
         private float _posRandom;
 
         private void Awake()
         {
+            PoolInstance = this;
             Init();
+        }
+        
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "MainMenu")
+            {
+                cubePos = GameObject.Find("CubeParent").transform;
+            }
         }
 
         private void Init()
@@ -43,15 +64,15 @@ namespace Script
             switch (_posRandom)
             {
                 case 0:
-                    GameObject redPoolGo = Instantiate(redCube);
+                    GameObject redPoolGo = Instantiate(redCube, cubePos);
                     redPoolGo.GetComponent<CubeAnimations>().Pool = Pool;
                     return redPoolGo;
                 case 1:
-                    GameObject greenPoolGo = Instantiate(greenCube);
+                    GameObject greenPoolGo = Instantiate(greenCube, cubePos);
                     greenPoolGo.GetComponent<CubeAnimations>().Pool = Pool;
                     return greenPoolGo;
                 case 2:
-                    GameObject bluePoolGo = Instantiate(blueCube);
+                    GameObject bluePoolGo = Instantiate(blueCube, cubePos);
                     bluePoolGo.GetComponent<CubeAnimations>().Pool = Pool;
                     return bluePoolGo;
                 default:
