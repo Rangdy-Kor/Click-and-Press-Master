@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Script
 {

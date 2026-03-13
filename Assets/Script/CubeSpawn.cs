@@ -20,7 +20,7 @@ namespace Script
         
         void FixedUpdate()
         {
-            if (transform.position.x is > 23 or < -23)
+            if (transform.position.x is > 17 or < -17)
             {
                 cubePosMoveSpeed *= -1;
             }
@@ -30,15 +30,16 @@ namespace Script
 
         IEnumerator SpawnCube()
         {
-            var cubeGo = ManagePool.PoolInstance.Pool.Get();
-            cubeGo.transform.position = transform.position;
             
             spawnRandomTime =  Random.Range(spawnRandomTimeRangeMin, spawnRandomTimeRangeMax + 1);
             _waitForSeconds = new WaitForSeconds(spawnRandomTime);
 
             yield return _waitForSeconds;
             
-            yield return new WaitForSeconds(spawnRandomTime);
+            var cubeGo = ManagePool.PoolInstance.Pool.Get();
+            cubeGo.transform.position = transform.position;
+
+            StartCoroutine(SpawnCube());
         }
     }
 }

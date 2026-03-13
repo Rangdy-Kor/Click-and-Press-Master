@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Script.CubeSpawn
   cubePosMoveSpeed: 0.1
   spawnRandomTime: 0
-  spawnRandomTimeRangeMin: 2
-  spawnRandomTimeRangeMax: 5
+  spawnRandomTimeRangeMin: 1
+  spawnRandomTimeRangeMax: 3
   currentSpawnDelay: 0
