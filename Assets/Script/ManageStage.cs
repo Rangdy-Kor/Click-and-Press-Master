@@ -22,6 +22,8 @@ namespace Script
             { "Stage3", typeof(Stage3) },
             { "Stage4", typeof(Stage4) },
             { "Stage5", typeof(Stage5) },
+            { "Stage6", typeof(Stage6) },
+            { "Stage7", typeof(Stage7) },
         };
 
         public StageInfo[] allStageInfos;

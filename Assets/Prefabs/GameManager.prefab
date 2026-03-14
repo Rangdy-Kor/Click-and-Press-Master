@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7004824933471652391}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,6 +382,8 @@ MonoBehaviour:
   - {fileID: 8989421071292924322, guid: 68694cfed38c63846849528b9aa75e29, type: 3}
   - {fileID: 8989421071292924322, guid: ddb0ddf2beb00c74c8e867980cc96489, type: 3}
   - {fileID: 8989421071292924322, guid: 271d0c1484051dc4c8842055124801b6, type: 3}
+  - {fileID: 8989421071292924322, guid: 58e240dd16eddcb4e9cae7c6605e6271, type: 3}
+  - {fileID: 8989421071292924322, guid: 16560adb6a93a5f4ab505a89b099eaf0, type: 3}
   stageTitleObject: {fileID: 0}
   stageClearAudio: {fileID: 6130584875153140435}
 --- !u!82 &6130584875153140435
@@ -498,4 +500,4 @@ MonoBehaviour:
   redCube: {fileID: 8343616407273020483, guid: 91581f4ea91f0da40b0b2b8eb7a68a21, type: 3}
   greenCube: {fileID: 8343616407273020483, guid: 31ebbcda4fab3b64182326236be738a8, type: 3}
   blueCube: {fileID: 8343616407273020483, guid: b522944a19ff58d4699660e8beb6c2dd, type: 3}
-  cubePos: {fileID: 6838066040373100204, guid: d59ef62e6031d834ba9b36d9b38e2094, type: 3}
+  cubePos: {fileID: 0}

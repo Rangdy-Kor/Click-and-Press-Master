@@ -44,7 +44,7 @@ namespace Script
 
         public bool Check()
         {
-            if (Keyboard.current[DigitOrder[_numberIndex]].wasPressedThisFrame || Keyboard.current[NumpadOrder[_numberIndex]].wasPressedThisFrame)
+            if (Keyboard.current[DigitOrder[_numberIndex]].isPressed || Keyboard.current[NumpadOrder[_numberIndex]].isPressed)
             {
                 _numberIndex++;
                 return _numberIndex >= DigitOrder.Length;
@@ -89,6 +89,42 @@ namespace Script
             {
                 _index++;
                 return _index >= Order.Length;
+            }
+            return false;
+        }
+    }
+
+    public class Stage6 : IStage
+    {
+        public void Init(GameObject spawnedObject) { }
+
+        public bool Check()
+        {
+            return Keyboard.current.ctrlKey.isPressed &&
+                   Keyboard.current.altKey.isPressed &&
+                   Keyboard.current.spaceKey.isPressed;
+        }
+    }
+
+    public class Stage7 : IStage
+    {
+        [SerializeField] private Camera mainCamera;
+        
+        public void Init(GameObject spawnedObject)
+        {
+            spawnedObject.SetActive(true);
+        }
+
+        public bool Check()
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    return hit.collider.CompareTag("Target");
+                }
             }
             return false;
         }

@@ -12,7 +12,7 @@ namespace Script
         {
             if (transform.position.y > -15)
             {
-                transform.Translate( Vector3.down * cubeAnimateSpeed);
+                transform.position += cubeAnimateSpeed * Vector3.down;
             }
             else
             {
